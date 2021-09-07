@@ -38,6 +38,7 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+
 module "rsk_pd_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.0.0"
@@ -48,6 +49,7 @@ module "rsk_pd_sg" {
 
   ingress_cidr_blocks      = ["0.0.0.0/0"]
   ingress_ipv6_cidr_blocks = ["::/0"]
+
   ingress_with_cidr_blocks = [
     {
       from_port = var.rsk_mainnet_pd_port

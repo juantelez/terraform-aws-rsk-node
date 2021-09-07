@@ -20,25 +20,28 @@ variable "rsk_network" {
   description = "RSK network could be MainNet, TestNet or RegTest"
   type        = string
 
-#  validation {
-#    condition     = var.rsk_network == "mainnet" != var.rsk_network == "testnet" != var.rsk_network == "regtest"
-#    error_message = "RSK network name (ie, mainnet, testnet or regtest)."
-#  }
+  validation {
+    condition     = var.rsk_network == "mainnet" || var.rsk_network == "testnet" || var.rsk_network == "regtest"
+    error_message = "RSK network name (ie, mainnet, testnet or regtest)."
+  }
 }
 
 variable "rsk_mainnet_pd_port" {
   description = "Port number for RSK MainNet Peer Discovery protocol"
   type        = number
+  default     = 5055
 }
 
 variable "rsk_testnet_pd_port" {
   description = "Port number for RSK TestNet Peer Discovery protocol"
   type        = number
+  default     = 50505
 }
 
 variable "rsk_regtest_pd_port" {
   description = "Port number for RSK RegTest Peer Discovery protocol"
   type        = number
+  default     = 50501
 }
 
 variable "instance_type" {
