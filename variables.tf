@@ -17,31 +17,13 @@ variable "name" {
 }
 
 variable "rsk_network" {
-  description = "RSK network could be MainNet, TestNet or RegTest"
+  description = "RSK network name. One of \"mainnet\", \"testnet\" or \"regtest\"."
   type        = string
 
   validation {
-    condition     = var.rsk_network == "mainnet" || var.rsk_network == "testnet" || var.rsk_network == "regtest"
-    error_message = "RSK network name (ie, mainnet, testnet or regtest)."
+    condition     = anytrue([for network in ["mainnet", "testnet", "regtest"] : lower(var.rsk_network) == network])
+    error_message = "Only \"mainnet\", \"testnet\" or \"regtest\" allowed."
   }
-}
-
-variable "rsk_mainnet_pd_port" {
-  description = "Port number for RSK MainNet Peer Discovery protocol"
-  type        = number
-  default     = 5055
-}
-
-variable "rsk_testnet_pd_port" {
-  description = "Port number for RSK TestNet Peer Discovery protocol"
-  type        = number
-  default     = 50505
-}
-
-variable "rsk_regtest_pd_port" {
-  description = "Port number for RSK RegTest Peer Discovery protocol"
-  type        = number
-  default     = 50501
 }
 
 variable "instance_type" {
