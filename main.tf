@@ -1,10 +1,13 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
+      version = "3.56.0"
     }
   }
 }
+
+data "aws_region" "current" {}
 
 data "aws_vpc" "default" {
   default = var.vpc_id == null ? true : false
@@ -80,6 +83,15 @@ module "rsk_pd_sg" {
   ]
 }
 
+module "ssh_sg" {
+  source  = "terraform-aws-modules/security-group/aws//modules/ssh"
+  version = "~> 4.0"
+
+  name        = "ssh-access"
+  description = "Security Group to allow SSH access"
+  vpc_id      = data.aws_vpc.default.id
+}
+
 module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "3.1.0"
@@ -101,5 +113,6 @@ module "ec2_instance" {
 
   vpc_security_group_ids = [
     module.rsk_pd_sg.security_group_id,
+    module.ssh_sg.security_group_id,
   ]
 }
