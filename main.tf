@@ -6,10 +6,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = var.region
-}
-
 data "aws_vpc" "default" {
   default = var.vpc_id == null ? true : false
   id      = var.vpc_id
