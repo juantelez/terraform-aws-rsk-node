@@ -31,3 +31,8 @@ variable "instance_type" {
   type        = string
   default     = "t3a.large"
 }
+
+variable "key_name" {
+  description = "Name of the keypair for SSH access (must exists on the AWS region)."
+  type        = string
+}

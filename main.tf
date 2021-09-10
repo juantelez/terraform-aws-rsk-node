@@ -102,6 +102,8 @@ module "ec2_instance" {
 
   instance_type = var.instance_type
 
+  key_name = var.key_name
+
   root_block_device = [
     {
       volume_type = "gp3"
