@@ -98,13 +98,14 @@ module "ec2_instance" {
   root_block_device = [
     {
       volume_type = "gp3"
-      volume_size = 100
+      volume_size = 200
     }
   ]
 
   subnet_id = data.aws_subnets.default.ids[0]
 
-  vpc_security_group_ids = [
-    module.rsk_pd_sg.security_group_id,
-  ]
+  vpc_security_group_ids = concat(
+    [module.rsk_pd_sg.security_group_id],
+    var.additional_security_group_ids,
+  )
 }
