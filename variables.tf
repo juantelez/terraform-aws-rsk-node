@@ -1,9 +1,3 @@
-#variable "region" {
-#  description = "The AWS region where the RSKj node is gonna run"
-#  type        = string
-#  default     = "us-east-1"
-#}
-
 variable "vpc_id" {
   description = "The ID of the VPC in which the nodes will be deployed. Uses default VPC if not supplied."
   type        = string
