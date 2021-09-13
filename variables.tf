@@ -29,4 +29,11 @@ variable "instance_type" {
 variable "key_name" {
   description = "Name of the keypair for SSH access (must exists on the AWS region)."
   type        = string
+  default     = null
+}
+
+variable "additional_security_group_ids" {
+  description = "List of security group IDs to associate with"
+  type        = list(string)
+  default     = []
 }
