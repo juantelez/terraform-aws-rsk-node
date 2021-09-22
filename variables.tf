@@ -5,7 +5,7 @@ variable "vpc_id" {
 }
 
 variable "name" {
-  description = "The name for your the EC2 instance that will be running the RSKj node"
+  description = "The name for your the EC2 instance that will be running the RSKj node."
   type        = string
   default     = "rsk-node"
 }
@@ -33,7 +33,7 @@ variable "key_name" {
 }
 
 variable "additional_security_group_ids" {
-  description = "List of security group IDs to associate with"
+  description = "List of security group IDs to associate with."
   type        = list(string)
   default     = []
 }

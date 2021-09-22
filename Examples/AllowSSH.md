@@ -65,7 +65,7 @@ $ sed -i "s/\*<IPs>\*/$IPs/" main.tf
 $ sed -i "s;\*<SSH_KEY>\*;$SSH_KEY;" main.tf
 $ terraform init
 $ terraform apply
-$ RSK_NODE_IP=$(terraform output)
+$ RSK_NODE_IP=$(terraform output -json | jq -r .public_ip.value)
 $ ssh -i ~/.ssh/id_ed25519 ubuntu@$RSK_NODE_IP
 ```
 
