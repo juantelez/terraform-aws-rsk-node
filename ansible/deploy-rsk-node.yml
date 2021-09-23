@@ -8,6 +8,7 @@
         name: "openjdk-{{ openjdk_version }}-jdk"
         state: latest
         install_recommends: no
+        update_cache: yes
       become: yes
     
     - name: Add RSK user
