@@ -1,6 +1,6 @@
 module "rsk-node" {
   source  = "app.terraform.io/juan-rsk-test/rsk-node/aws"
-  version = "0.1.6"
+  version = "1.0.3"
 
   rsk_network = var.rsk_network
 
@@ -27,4 +27,3 @@ module "ssh_security_group" {
 
   ingress_cidr_blocks = ["<IPs>/32"]
 }
-

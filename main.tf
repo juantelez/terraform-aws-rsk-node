@@ -83,6 +83,18 @@ module "rsk_pd_sg" {
   ]
 }
 
+module "exit_to_Inet_sg" {
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "4.0.0"
+
+  name        = "exit-to-Inet-sg"
+  description = "Allow access from RSK ${lower(var.rsk_network)} to the Internet."
+  vpc_id      = data.aws_vpc.default.id
+
+  egress_cidr_blocks      = ["0.0.0.0/0"]
+  egress_ipv6_cidr_blocks = ["::/0"]
+}
+
 module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "3.1.0"
@@ -106,6 +118,7 @@ module "ec2_instance" {
 
   vpc_security_group_ids = concat(
     [module.rsk_pd_sg.security_group_id],
+    [module.exit_to_Inet_sg.security_group_id],
     var.additional_security_group_ids,
   )
 }
