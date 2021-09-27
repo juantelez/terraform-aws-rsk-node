@@ -1,5 +1,5 @@
 ---
-openjdk_version: 11
+openjdk_version:
 
 rskj_install_dir: /usr/share/rsk
 rskj_workdir: "/home/{{ ansible_user }}/rsk"
@@ -16,5 +16,5 @@ rskj_download_jar: "rskj-core-{{ rskj_version_number }}-{{ rskj_version_codename
 rskj_version_number: "3.0.1"
 rskj_version_codename: IRIS
 
-rsk_network: TestNet
-rsk_blockchain_name: testnet
+rsk_network:
+rsk_blockchain_name:
