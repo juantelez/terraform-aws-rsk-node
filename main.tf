@@ -93,6 +93,21 @@ module "exit_to_Inet_sg" {
 
   egress_cidr_blocks      = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks = ["::/0"]
+
+  egress_with_cidr_blocks = [
+    {
+      from_port = -1
+      to_port   = -1
+      protocol  = -1
+    },
+  ]
+  egress_with_ipv6_cidr_blocks = [
+    {
+      from_port = -1
+      to_port   = -1
+      protocol  = -1
+    },
+  ]
 }
 
 module "ec2_instance" {

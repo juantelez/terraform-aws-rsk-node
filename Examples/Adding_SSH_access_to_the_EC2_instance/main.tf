@@ -1,6 +1,6 @@
 module "rsk-node" {
   source  = "app.terraform.io/juan-rsk-test/rsk-node/aws"
-  version = "1.0.3"
+  version = "1.0.4"
 
   rsk_network = var.rsk_network
 
