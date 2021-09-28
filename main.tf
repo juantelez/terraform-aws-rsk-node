@@ -51,7 +51,7 @@ module "rsk_pd_sg" {
   version = "4.0.0"
 
   name        = "rsk-${lower(var.rsk_network)}-peer-discovery"
-  description = "Allow world access to RSK ${lower(var.rsk_network)} Peer Discovery"
+  description = "Allow world access to RSK ${lower(var.rsk_network)} Peer Discovery."
   vpc_id      = data.aws_vpc.default.id
 
   ingress_cidr_blocks      = ["0.0.0.0/0"]
@@ -83,16 +83,31 @@ module "rsk_pd_sg" {
   ]
 }
 
-module "exit_to_Inet_sg" {
+module "allow_outgoing_internet_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.0.0"
 
   name        = "exit-to-Inet-sg"
-  description = "Allow access from RSK ${lower(var.rsk_network)} to the Internet."
+  description = "Allow outgoing traffic to the Internet."
   vpc_id      = data.aws_vpc.default.id
 
   egress_cidr_blocks      = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks = ["::/0"]
+
+  egress_with_cidr_blocks = [
+    {
+      from_port = -1
+      to_port   = -1
+      protocol  = -1
+    },
+  ]
+  egress_with_ipv6_cidr_blocks = [
+    {
+      from_port = -1
+      to_port   = -1
+      protocol  = -1
+    },
+  ]
 }
 
 module "ec2_instance" {
@@ -117,8 +132,10 @@ module "ec2_instance" {
   subnet_id = data.aws_subnets.default.ids[0]
 
   vpc_security_group_ids = concat(
-    [module.rsk_pd_sg.security_group_id],
-    [module.exit_to_Inet_sg.security_group_id],
+    [
+      module.rsk_pd_sg.security_group_id,
+      module.exit_to_Inet_sg.security_group_id,
+    ],
     var.additional_security_group_ids,
   )
 }
