@@ -3,7 +3,9 @@
 ## Summary
 Terraform [module](https://www.terraform.io/docs/language/modules/index.html) which provision the necessary infraestructure to run a RSK node on an EC2 AWS instance.
 
-The most important things that this module will create are: an EC2 instance (using a default type `t3a.large`) and ttwo Security Groups attached to the instance, one to allow world access to RSK Peer Discovery and other to let the instance connect to the world (this is needed to install the RSKj implementation).
+The most important things that this module will create are: an EC2 instance (using a default type `t3a.large`) and two Security Groups attached to the instance, one to allow world access to RSK Peer Discovery and other to let the instance connect to the world (this is needed to install the RSKj implementation).
+
+> Using this module will only give you the infraestructure needed to deploy the RSKj node. Then you could do the deploy using this Ansible [role](https://github.com/rsksmart/ansible-role-rsk-node). Here you have an [example](./Examples/Provision_deploy_and_configure/README.md) of the complete procedure.
 
 ## Inputs
 | Name | Description | Type | Default | Required |
@@ -22,5 +24,4 @@ The most important things that this module will create are: an EC2 instance (usi
 
 ## Usage examples
 * [Adding SSH access to the EC2 instance](./Examples/Adding_SSH_access_to_the_EC2_instance/README.md)
-
-> Using this module will only give you the infraestructure needed to deploy the RSKj node. Then you could do the deploy using this Ansible [module](https://github.com/rsksmart/ansible-role-rsk-node). Here you have an [example](./Examples/Provision_deploy_and_configure.md) of the complete procedure.
+* [Provision, deploy, configure and spin up an RSKj node](./Examples/Provision_deploy_and_configure/README.md) 
