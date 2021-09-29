@@ -122,6 +122,8 @@ module "ec2_instance" {
 
   key_name = var.key_name
 
+  ebs_optimized = true
+
   root_block_device = [
     {
       volume_type = "gp3"
