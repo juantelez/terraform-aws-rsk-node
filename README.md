@@ -25,5 +25,4 @@ The most important things that this module will create are: an EC2 instance (usi
 ## Usage examples
 * [Adding SSH access to the EC2 instance](./Examples/Adding_SSH_access_to_the_EC2_instance/README.md)
 
-# Intalling and configuring the RSKj node using Ansible playbook
-Inside directory [ansible/](./ansible/) you will find the `deploy-rsk-node.yml` role to install, configure and spin up the node.  
+> Using this module will only give you the infraestructure needed to deploy the RSKj node. Then you could do the deploy using this Ansible [module](https://github.com/rsksmart/ansible-role-rsk-node). Here you have an [example](./Examples/Provision_deploy_and_configure.md) of the complete procedure.
